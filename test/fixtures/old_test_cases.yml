@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  test_plan_id: 1
+  name: MyString
+  case_id: MyString
+  version: MyString
+  priority: MyString
+  automated_status: MyString
+  test_link_id: 1
+
+two:
+  test_plan_id: 1
+  name: MyString
+  case_id: MyString
+  version: MyString
+  priority: MyString
+  automated_status: MyString
+  test_link_id: 1

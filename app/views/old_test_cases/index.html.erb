@@ -1,0 +1,23 @@
+<h1>Listing old_test_cases</h1>
+
+<table>
+  <tr>
+    <th>Case ID</th>
+    <th>Automated status</th>
+    <th>Testlink ID</th>
+    <th></th>
+  </tr>
+
+<% @old_test_cases.each do |old_test_case| %>
+  <tr>
+    <td><%= old_test_case.case_id %></td>
+    <td><%= old_test_case.automated_status %></td>
+    <td><%= old_test_case.test_link_id %></td>
+    <td><%= button_to 'Update Status' %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%= paginate @old_test_cases %>
+<%= link_to 'New Old test case', new_old_test_case_path %>
