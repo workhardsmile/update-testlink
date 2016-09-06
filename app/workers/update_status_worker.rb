@@ -14,11 +14,10 @@ class UpdateStatusWorker
         # select n.id from nodes_hierarchy n
         # where n.parent_id in (#{test_link_ids.join(',')})
         # and n.node_type_id = 4)"
-      delete_str ="delete from cfield_design_values v
-        where v.field_id = #{field_id} and v.node_id in (
+      delete_str ="delete from cfield_design_values
+        where field_id=#{field_id} and node_id in(
         select n.id from nodes_hierarchy n
-        where n.parent_id in (#{test_link_ids.join(',')})
-        and n.node_type_id = 4)"     
+        where n.node_type_id = 4 and n.parent_id in (#{test_link_ids.join(',')}))"     
       insert_str = "insert into testlink.cfield_design_values(field_id,node_id,value) 
       select #{field_id},n.id,'Automated' from testlink.nodes_hierarchy n
       where n.node_type_id = 4 and n.parent_id in (#{test_link_ids.join(',')})"

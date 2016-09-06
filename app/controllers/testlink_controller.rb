@@ -1,4 +1,5 @@
 class TestlinkController < ApplicationController
+  skip_before_filter  :verify_authenticity_token
   def update_status
     if params[:case_arrays]
       temp = OldTestCase.where(:case_id => params[:case_arrays]).select("test_link_id, automated_status")
