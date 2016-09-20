@@ -21,12 +21,15 @@ class UpdateStatusWorker
       insert_str = "insert into testlink.cfield_design_values(field_id,node_id,value) 
       select #{field_id},n.id,'Automated' from testlink.nodes_hierarchy n
       where n.node_type_id = 4 and n.parent_id in (#{test_link_ids.join(',')})"
+      update_str = "update testlink.tcversions set execution_type=2 where id in (select n.id from testlink.nodes_hierarchy n
+      where n.node_type_id = 4 and n.parent_id in (#{test_link_ids.join(',')}))"
       
       testlink = ActiveRecord::Base.establish_connection Rails.configuration.database_configuration['testlink']
 
       begin
         testlink.connection.execute(delete_str)
         testlink.connection.execute(insert_str)
+        testlink.connection.execute(update_str)
       rescue Exception => e
         puts "--->> failed to update status for #{test_link_ids}, get error #{e}"
       ensure
