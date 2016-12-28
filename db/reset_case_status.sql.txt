@@ -1,0 +1,6 @@
+set @field_id=1;
+delete from testlink.cfield_design_values where field_id=@field_id and `value` in ('Automated','Automatable');
+insert into testlink.cfield_design_values(`field_id`,`node_id`,`value`) 
+      select @field_id,n.id,'Automatable' from testlink.nodes_hierarchy n
+      where n.node_type_id = 4 and n.parent_id in (
+      select test_link_id from old_test_cases where automated_status in (NULL,'Automated','Automatable'));
