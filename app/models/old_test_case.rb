@@ -1,3 +1,3 @@
 class OldTestCase < ActiveRecord::Base
-  paginates_per 50
+  #paginates_per 50
 end
